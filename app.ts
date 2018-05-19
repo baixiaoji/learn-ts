@@ -57,3 +57,23 @@ let complex: {data: number[], output: (all: boolean) => number[]} = {
     }
 }
 console.log(complex);
+
+//type alias
+type Complex = {data: number[], output: (all: boolean) => number[]}
+
+let complex2: Complex = {
+    data: [12,32,12],
+    output(all){
+        return this.data;
+    }
+}
+
+// union type
+let myRealAge: number | string = 21
+myRealAge = '21'
+
+// never
+function throwError(): never{
+    throw new Error("An Error!")
+};
+throwError()
