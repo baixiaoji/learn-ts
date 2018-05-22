@@ -20,6 +20,7 @@ sayName(Man);
 changeName(Man);
 sayName(Man);
 Man.greet("Future");
+// about class
 var aMan = /** @class */ (function () {
     // firstName: string;
     function aMan(firstName) {
