@@ -11,5 +11,8 @@
   "license": "MIT",
   "devDependencies": {
     "lite-server": "^2.3.0"
+  },
+  "dependencies": {
+    "@types/lodash": "^4.14.112"
   }
 }
