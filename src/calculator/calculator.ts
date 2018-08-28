@@ -39,23 +39,43 @@
                 content = target.textContent
             }
             // const content = <string>target.textContent;
-            if ('1234567890'.indexOf(content) >= 0) {
+            if ('1234567890.'.indexOf(content) >= 0) {
                 if (operator) {
                     if (n2) {
                         n2 = n2 + content
                     } else {
                         n2 = content;
                     }
+                    output.textContent = n2.toString();
+                    return;
                 }
                 if (n1) {
                     n1 = n1 + content
                 } else {
                     n1 = content;
                 }
+                output.textContent = n1.toString();
             } else if ('÷×-+'.indexOf(content) >= 0){
                 operator = content;
             } else if ('='.indexOf(content) >= 0) {
-                console.log(n1, n2, operator);
+                console.log(n1, operator, n2);
+                let finalResult: number = 0;
+                switch(operator) {
+                    case '-': 
+                    finalResult = parseFloat(n1) - parseFloat(n2);
+                    break;
+                    case '+':
+                    finalResult = parseFloat(n1) + parseFloat(n2);
+                    break;
+                    case '÷':
+                    finalResult = parseFloat(n1) / parseFloat(n2);
+                    break;
+                    case '×':
+                    finalResult = parseFloat(n1) * parseFloat(n2);
+                    break;
+                }
+                result = finalResult.toString();
+                output.textContent = result;
             }
         }
     })
