@@ -1,0 +1,25 @@
+div {
+    box-sizing: border-box;
+}
+.button {
+    width: 3em;
+    height: 3em;
+}
+.button.text-Clear {
+    width: 9em;
+}
+.button.text-0 {
+    width: 6em;
+}
+.calculator {
+    display: inline-block;
+}
+.calculator .output {
+    height: 55px;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: flex-end;
+    color: #fff;
+    background: #292929;
+    padding: 4px;
+}
