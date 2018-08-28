@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "server": "http-server . -c-1",
-    "watch": "tsc -w calculator.ts"
+    "watch": "tsc -w calculator-class.ts"
   },
   "author": "",
   "license": "ISC",

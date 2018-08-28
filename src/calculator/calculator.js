@@ -1,17 +1,21 @@
 {
+    // 创建 button
     function createButton(text, container) {
         var button = document.createElement('button');
         button.textContent = text;
         button.className = "button text-" + text;
         container.appendChild(button);
     }
+    // 创建calculator容器
     var wrapper_1 = document.createElement('div');
     wrapper_1.classList.add('calculator');
     document.body.appendChild(wrapper_1);
+    // 创建输出
     var output_1 = document.createElement('div');
     output_1.classList.add('output');
     output_1.textContent = '0';
     wrapper_1.appendChild(output_1);
+    // 生成 计算机的组件
     var textArray = [
         ['Clear', '÷'],
         ['7', '8', '9', '×'],
@@ -27,10 +31,12 @@
         });
         wrapper_1.appendChild(div);
     });
+    // 计算值 
     var n1_1;
     var n2_1;
     var operator_1;
     var result_1;
+    // 绑定事件
     wrapper_1.addEventListener('click', function (e) {
         if (e.target instanceof HTMLButtonElement) {
             var target = e.target;
@@ -78,8 +84,14 @@
                         finalResult = parseFloat(n1_1) * parseFloat(n2_1);
                         break;
                 }
-                result_1 = finalResult.toString();
+                result_1 = finalResult.toFixed(2).toString();
                 output_1.textContent = result_1;
+            }
+            else if ('Clear'.indexOf(content) >= 0) {
+                n1_1 = null;
+                n2_1 = null;
+                operator_1 = null;
+                output_1.textContent = '0';
             }
         }
     });
