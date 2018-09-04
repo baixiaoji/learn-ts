@@ -1,14 +1,20 @@
 {
     "compilerOptions": {
-        "outDir": "./dist/",
-        "sourceMap": true,
-        "strict": true,
-        "noImplicitReturns": true,
-        "module": "es2015",
-        "moduleResolution": "node",
-        "target": "es5"
+      "allowSyntheticDefaultImports": true,
+      "lib": [
+        "dom",
+        "es5",
+        "es2015.promise"
+      ],
+      "module": "es2015",
+      "moduleResolution": "node",
+      "isolatedModules": false,
+      "target": "es5"
     },
     "include": [
-        "./src/**/*"
+      "./src/**/*.ts"
+    ],
+    "files": [
+        "./src/vue-shims.d.ts"
     ]
-}
+  }
