@@ -1,22 +1,22 @@
 import React from 'react';
+import {AppContainer} from "./styles/styles";
+
+import {Column} from "./Column";
+import {Card} from "./Card";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AppContainer>
+        <Column text='To Do'>
+            <Card text='Other Components' />
+        </Column>
+        <Column text='In Progress'>
+            <Card text='App Components' />
+        </Column>
+        <Column text='Done'>
+            <Card text='Remove Clutter' />
+        </Column>
+    </AppContainer>
   );
 }
 
