@@ -1,4 +1,4 @@
-import React, {PropsWithChildren} from "react";
+import React from "react";
 import {ColumnContainer, ColumnTitle} from "./styles/styles";
 import { AddNewItem } from "./AddNewItem";
 import {useAppState} from "./AppStateContext";
