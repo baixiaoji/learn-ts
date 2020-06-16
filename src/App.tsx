@@ -4,22 +4,21 @@ import {AppContainer} from "./styles/styles";
 import {Column} from "./Column";
 import {Card} from "./Card";
 import {AddNewItem} from './AddNewItem'
+import {useAppState} from "./AppStateContext";
 
 function App() {
-  return (
-    <AppContainer>
-        <Column text='To Do'>
-            <Card text='Other Components' />
-        </Column>
-        <Column text='In Progress'>
-            <Card text='App Components' />
-        </Column>
-        <Column text='Done'>
-            <Card text='Remove Clutter' />
-        </Column>
-        <AddNewItem toggleButtonText='+ Add another list' onAdd={console.log} />
-    </AppContainer>
-  );
+    const {state, dispatch} = useAppState();
+
+    return (
+        <AppContainer>
+            {state.lists.map((list,i) => (
+                <Column text={list.text} key={list.id} index={i} id={list.id} />
+            ))}
+            <AddNewItem toggleButtonText='+ Add another list'
+                        onAdd={text => dispatch({type: 'ADD_LIST', payload: text})}
+            />
+        </AppContainer>
+    );
 }
 
 export default App;
