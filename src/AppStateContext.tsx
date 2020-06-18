@@ -1,8 +1,10 @@
-import React, {createContext, Dispatch, PropsWithChildren, useContext, useReducer} from "react";
+import React, {createContext, Dispatch, PropsWithChildren, useContext, useEffect, useReducer} from "react";
 import {nanoid} from "nanoid";
 import {findItemIndexById} from "./utils/findItemIndexById";
 import { moveItem } from "./utils/moveItem";
 import {DragItem} from "./DragItem";
+import {save} from "./api";
+import {withData} from "./withData";
 
 interface Task {
     id: string;
@@ -17,31 +19,31 @@ export interface AppState {
     lists: List[]
     draggedItem?: DragItem;
 }
-const appData: AppState = {
-    lists: [
-        {
-            id: '0',
-            text: 'TO DO',
-            tasks: [
-                {id: 'c0', text: 'App data generate'},
-            ]
-        },
-        {
-            id: '1',
-            text: 'In Progress',
-            tasks: [
-                {id: 'c2', text: 'Learn TS & React'},
-            ]
-        },
-        {
-            id: '2',
-            text: 'Done',
-            tasks: [
-                {id: 'c3', text: 'start using TS'},
-            ]
-        },
-    ]
-}
+// const appData: AppState = {
+//     lists: [
+//         {
+//             id: '0',
+//             text: 'TO DO',
+//             tasks: [
+//                 {id: 'c0', text: 'App data generate'},
+//             ]
+//         },
+//         {
+//             id: '1',
+//             text: 'In Progress',
+//             tasks: [
+//                 {id: 'c2', text: 'Learn TS & React'},
+//             ]
+//         },
+//         {
+//             id: '2',
+//             text: 'Done',
+//             tasks: [
+//                 {id: 'c3', text: 'start using TS'},
+//             ]
+//         },
+//     ]
+// }
 
 type Action = | {
     type: 'ADD_LIST',
@@ -137,9 +139,14 @@ const AppStateContext = createContext<AppStateContextProps>({} as AppStateContex
 export const useAppState = () => {
     return useContext(AppStateContext);
 }
-export const AppStateProvider = ({children}: PropsWithChildren<{}>) => {
-    const [state, dispatch] = useReducer(appStateReducer, appData);
+export const AppStateProvider = withData(({children, initialState}: PropsWithChildren<{initialState: AppState}>) => {
+    const [state, dispatch] = useReducer(appStateReducer, initialState);
+
+    useEffect(() => {
+        save(state)
+    }, [state]);
+
     return <AppStateContext.Provider value={ {state, dispatch } }>
         {children}
     </AppStateContext.Provider>;
-}
+})
